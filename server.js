@@ -8,20 +8,39 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
-    title: 'article one | avinash bhoyar',
-    heading: 'article one',
-    date: '5 aug 2017',
-    content: `<p>
-                    this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                </p>
-                <p>
-                    this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                </p>
-                <p>
-                    this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                </p>`
-}
+var articles={ 
+    articleOne: {
+        title: 'article one | avinash bhoyar',
+        heading: 'article one',
+        date: '5 aug 2017',
+        content: `<p>
+                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
+                    </p>
+                    <p>
+                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
+                    </p>
+                    <p>
+                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
+                    </p>`
+    },
+    articleTwo: {
+        title: 'article Two | avinash bhoyar',
+        heading: 'article Two',
+        date: '5 aug 2017',
+        content: `<p>
+                        this is the content for my web app. 
+                    </p>`
+    },
+    articleThree: {
+        title: 'article three | avinash bhoyar',
+        heading: 'article three',
+        date: '5 aug 2017',
+        content: `<p>
+                        this is the content for my web app. 
+                    </p>`
+    }
+
+};
 
 function createTempate(data){
     var title=data.title;
@@ -77,11 +96,11 @@ app.get('/article-one',function(req,res){
 });
 
 app.get('/article-two',function(req,res){ 
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
+    res.send(createTempate(articleTwo));
 });
 
 app.get('/article-three',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+    res.send(createTempate(articleThree));
 });
 
 // handling specific url
