@@ -97,6 +97,7 @@ app.get('/counter', function (req, res) {
   res.send(counter.toString());
 });
 
+// another example of JSON
 var names= [];
 app.get('/submit-name', function (req, res) { 
     // use format of url like /submit-name?name=abc  //
