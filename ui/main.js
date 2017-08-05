@@ -1,6 +1,6 @@
 // counter code
 var button = document.getElementById('counter');
-var counter=0;
+
 button.onclick = function() {
     
     // create request object
@@ -18,10 +18,6 @@ button.onclick = function() {
         }
         //ELSE DO NOTHING
     }
-    //Render the variable in the correct span
-    counter = counter+1;
-    var span= document.getElementById('count');
-    span.innerHTML= counter.toString();
     
     // make request
     request.open('GET','http://avi2012bhoyar.imad.hasura-app.io/counter',true);
