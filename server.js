@@ -105,6 +105,11 @@ app.get('/ui/style.css', function (req, res) {
 });
 
 // handling specific url
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
+});
+
+// handling specific url
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
