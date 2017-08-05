@@ -97,6 +97,17 @@ app.get('/counter', function (req, res) {
   res.send(counter.toString());
 });
 
+var names= [];
+app.get('/submit-name', function (req, res) { 
+    // use format of url like /submit-name?name=abc  //
+    // get the name from the request
+    var name= req.query.name;
+    
+    names.push(name);
+    //JSON: javascript object notation
+    res.send(JSON.stringify(names));
+});
+
 app.get('/:articleName',function(req,res){
     // articleName== article-one
     // articles[articleName]== {} content object for article one
@@ -121,7 +132,7 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 
-// json example 1
+/*// one way of json data
 var names= [];
 app.get('/submit-name/:name', function (req, res) {
     //get the name from the request
@@ -131,6 +142,8 @@ app.get('/submit-name/:name', function (req, res) {
     //JSON: javascript object notation
     res.send(JSON.stringify(names));
 });
+//////////////// another example code if we try it here will give error
+*/
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
