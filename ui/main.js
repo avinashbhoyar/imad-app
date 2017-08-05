@@ -3,14 +3,18 @@ var button = document.getElementById('counter');
 var counter=0;
 button.onclick = function() {
     
-    // make a request to the counter endpoint
+    // create request object
     var request = new XMLHttpRequest();
     
     //capture the response and store it in a variable
     request.onreadystatechange = function(){
         if(request.readyState== XMLHttpRequest.DONE){
             //TAKE SOME ACTION
-            
+            if(request.readyState==200){
+                var counter=request.responseText;
+                var span= document.getElementById('count');
+                span.innerHTML= counter.toString();
+            }
         }
         //ELSE DO NOTHING
     }
@@ -18,4 +22,8 @@ button.onclick = function() {
     counter = counter+1;
     var span= document.getElementById('count');
     span.innerHTML= counter.toString();
+    
+    // make request
+    request.open('GET','http://avi2012bhoyar.imad.hasura-app.io/counter',true);
+    request.send(null);
 };
