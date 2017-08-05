@@ -9,6 +9,6 @@ element.innerHTML= 'New Value';
 var image= document.getElementById('modi');
 
 image.onclick = function() {
-   img.style.marginleft="100px";
+   image.style.marginleft="100px";
 }; 
 
