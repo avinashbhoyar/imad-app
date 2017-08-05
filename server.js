@@ -9,7 +9,7 @@ var app = express();
 app.use(morgan('combined'));
 
 var articles={ 
-    articleOne: {
+    'article-one': {
         title: 'article one | avinash bhoyar',
         heading: 'article one',
         date: '5 aug 2017',
@@ -23,7 +23,7 @@ var articles={
                         this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
                     </p>`
     },
-    articleTwo: {
+    'article-two': {
         title: 'article Two | avinash bhoyar',
         heading: 'article Two',
         date: '5 aug 2017',
@@ -31,7 +31,7 @@ var articles={
                         this is the content for my web app. 
                     </p>`
     },
-    articleThree: {
+    'article-three': {
         title: 'article three | avinash bhoyar',
         heading: 'article three',
         date: '5 aug 2017',
@@ -91,8 +91,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-    res.send(createTempate(articleOne));
+app.get('/:articleName',function(req,res){
+    // articleName== article-one
+    // articles[articleName]== {} content object for article one
+    var articleName= req.params.articleName;
+    res.send(createTempate(articles[articleName]));
 });
 
 app.get('/article-two',function(req,res){ 
