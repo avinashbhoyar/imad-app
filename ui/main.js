@@ -17,7 +17,7 @@ button.onclick = function() {
             }
         }
         //ELSE DO NOTHING
-    }
+    };
     
     // make request
     request.open('GET','http://avi2012bhoyar.imad.hasura-app.io/counter',true);
