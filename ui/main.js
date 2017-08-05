@@ -20,6 +20,6 @@ button.onclick = function() {
     };
     
     // make request
-    request.open('GET','http://avi2012bhoyar.imad.hasura-app.io/counter',true);
+    request.open("GET","http://avi2012bhoyar.imad.hasura-app.io/counter",true);
     request.send(null);
 };
