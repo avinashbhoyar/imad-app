@@ -98,13 +98,6 @@ app.get('/:articleName',function(req,res){
     res.send(createTempate(articles[articleName]));
 });
 
-app.get('/article-two',function(req,res){ 
-    res.send(createTempate(articleTwo));
-});
-
-app.get('/article-three',function(req,res){
-    res.send(createTempate(articleThree));
-});
 
 // handling specific url
 app.get('/ui/style.css', function (req, res) {
