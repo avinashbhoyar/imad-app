@@ -4,6 +4,16 @@
 var express = require('express'); // used to create web server so that we need not to learn to listen on port or  handling http connections. 
 var morgan = require('morgan'); //used to help us output logs of server that we know what request comming to server to a server and how we handle those.
 var path = require('path');
+var Pool = require('pg').Pool;
+
+var config={
+    user: 'avi2012bhoyar',
+    database: 'avi2012bhoyar',
+    host: 'db.imad.hasura-app.io',
+    port: '5432',
+    password: procss.env.DB_PASSWORD
+    
+};
 
 var app = express();
 app.use(morgan('combined'));
