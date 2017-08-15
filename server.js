@@ -133,7 +133,8 @@ app.get('/ui/style.css', function (req, res) {
 });
 
 
-// handling specific url
+var pool = new Pool(config);
+// Access DB
 app.get('/test-db', function (req, res) {
   // make a select request 
   // return a response with the results
