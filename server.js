@@ -64,7 +64,7 @@ app.get('/articles/:articleName',function(req,res){
                res.status(404).send('article not found');
            }else{
                var articleData= result.rows[0];
-               res.send(createTemplate(articleData));
+               res.send(createTempate(articleData));
            }
        }
     });
