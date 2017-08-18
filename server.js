@@ -11,7 +11,7 @@ var config={
     database: 'avi2012bhoyar',
     host: 'avi2012bhoyar.imad.hasura-app.io',
     port: '5432',
-    password: 'db-avi2012bhoyar-69915'//process.env.DB_PASSWORD
+    password: process.env.DB_PASSWORD
 };
 
 var app = express();
