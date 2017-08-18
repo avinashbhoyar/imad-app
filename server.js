@@ -101,11 +101,17 @@ app.get('/test-db', function (req, res) {
   // make a select request 
   // return a response with the results
   pool.query('SELECT * FROM test', function(err,result){
-     if(err){
+      
+      if(process.env.DB_PASSWORD != 'db-avi2012bhoyar-69915') {
+           var myJSON = '{ "name":"John", "age":31, "city":"New York" }';
+            var myObj = JSON.parse(myJSON);
+            document.getElementById("demo").innerHTML = myObj.name;
+        }
+    /* if(err){
          res.status(500).send(err.toString());
      } else{
          res.send(JSON.stringify(result));
-     }
+     }*/
   });
 });
 
