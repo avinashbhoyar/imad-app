@@ -64,13 +64,13 @@ app.get('/articles/:articleName',function(req,res){
                res.status(404).send('article not found');
            }else{
                var articleData= result.rows[0];
-               res.send(createTempate(articleData));
+               res.send(createTemplate(articleData));
            }
        }
     });
 });
 
-function createTempate(data){
+function createTemplate(data){
     var title=data.title;
     var heading=data.heading;
     var date=data.date;
