@@ -35,7 +35,7 @@ var articles={
     'article-two': {
         title: 'article Two | avinash bhoyar',
         heading: 'article Two',
-        date: '5 aug 2017',
+        date: '7 aug 2017',
         content: `<p>
                         this is the content for my web app. 
                     </p>`
@@ -56,7 +56,11 @@ app.get('/articles/:articleName',function(req,res){
     // articles[articleName]== {} content object for article one
     
     // SELECT * FROM article WHERE title='article-one'
-    pool.query("SELECT * FROM article WHERE title='"+ req.params.articleName+"'",function(err, result){
+    // SELECT * FROM article WHERE title='article-one' user can hack here as shown below
+    // make query like this SELECT * FROM article WHERE title=''; DELETE WHERE a='asdf'
+    // use url like this http://avi2012bhoyar.imad.hasura-app.io/articles/'; DELETE FROM "article" where 'a' = 'a
+    // to avoid such hacking use safer way to put parameter in our sql query
+    pool.query("SELECT * FROM article WHERE title= $1",[req.params.articleName],function(err, result){
        if(err){
            res.status(500).send(err.toString());
        }else{
