@@ -17,39 +17,6 @@ var config={
 var app = express();
 app.use(morgan('combined'));
   
-var articles={ 
-    'article-one': {
-        title: 'article one | avinash bhoyar',
-        heading: 'article one',
-        date: '5 aug 2017',
-        content: `<p>
-                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                    </p>
-                    <p>
-                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                    </p>
-                    <p>
-                        this is the content for my web app. this is the content for my web app. this is the content for my web app. this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.this is the content for my web app.
-                    </p>`
-    },
-    'article-two': {
-        title: 'article Two | avinash bhoyar',
-        heading: 'article Two',
-        date: '7 aug 2017',
-        content: `<p>
-                        this is the content for my web app. 
-                    </p>`
-    },
-    'article-three': {
-        title: 'article three | avinash bhoyar',
-        heading: 'article three',
-        date: '5 aug 2017',
-        content: `<p>
-                        this is the content for my web app. 
-                    </p>`
-    }
-
-};
 
 app.get('/articles/:articleName',function(req,res){
     // articleName== article-one
