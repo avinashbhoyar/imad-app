@@ -5,6 +5,7 @@ var express = require('express'); // used to create web server so that we need n
 var morgan = require('morgan'); //used to help us output logs of server that we know what request comming to server to a server and how we handle those.
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
 
 var config={
     user: 'avi2012bhoyar',
@@ -16,30 +17,6 @@ var config={
 
 var app = express();
 app.use(morgan('combined'));
-  
-
-app.get('/articles/:articleName',function(req,res){
-    // articleName== article-one
-    // articles[articleName]== {} content object for article one
-    
-    // SELECT * FROM article WHERE title='article-one'
-    // SELECT * FROM article WHERE title='article-one' user can hack here as shown below
-    // make query like this SELECT * FROM article WHERE title=''; DELETE WHERE a='asdf'
-    // use url like this http://avi2012bhoyar.imad.hasura-app.io/articles/'; DELETE FROM "article" where 'a' = 'a
-    // to avoid such hacking use safer way to put parameter in our sql query
-    pool.query("SELECT * FROM article WHERE title= $1",[req.params.articleName],function(err, result){
-       if(err){
-           res.status(500).send(err.toString());
-       }else{
-           if(result.rows.length===0){
-               res.status(404).send('article not found');
-           }else{
-               var articleData= result.rows[0];
-               res.send(createTemplate(articleData));
-           }
-       }
-    });
-});
 
 function createTemplate(data){
     var title=data.title;
@@ -84,6 +61,42 @@ function createTemplate(data){
     
     return htmlTemplate;
 }
+
+
+app.get('/articles/:articleName',function(req,res){
+    // articleName== article-one
+    // articles[articleName]== {} content object for article one
+    
+    // SELECT * FROM article WHERE title='article-one'
+    // SELECT * FROM article WHERE title='article-one' user can hack here as shown below
+    // make query like this SELECT * FROM article WHERE title=''; DELETE WHERE a='asdf'
+    // use url like this http://avi2012bhoyar.imad.hasura-app.io/articles/'; DELETE FROM "article" where 'a' = 'a
+    // to avoid such hacking use safer way to put parameter in our sql query
+    pool.query("SELECT * FROM article WHERE title= $1",[req.params.articleName],function(err, result){
+       if(err){
+           res.status(500).send(err.toString());
+       }else{
+           if(result.rows.length===0){
+               res.status(404).send('article not found');
+           }else{
+               var articleData= result.rows[0];
+               res.send(createTemplate(articleData));
+           }
+       }
+    });
+});
+
+
+function hash(input, salt){
+    // how do we create a hash?
+    var hashed = crypto.pbkdf2Sync(input , salt, 100000, 512, 'sha512');
+    return hashed.toString('hex');
+}
+
+app.get('/hash/:input',function(req,res){
+    var hashedString = hash(req.params.input, 'this is some random string');
+    res.send(hashedString);
+});
 
 var pool = new Pool(config);
 // Access DB
