@@ -1,4 +1,4 @@
-// Submit name
+// Submit username/ password to login
 var submit= document.getElementById('submit_btn');
 submit.onclick= function() {
     
@@ -21,8 +21,8 @@ submit.onclick= function() {
     };
     
     // make request
-    var username= document.getElementById('username');
-    var password= document.getElementById('password');
+    var username= document.getElementById('username').value;
+    var password= document.getElementById('password').value;
     console.log(username);
     console.log(password);
     request.open("POST","http://avi2012bhoyar.imad.hasura-app.io/login",true);
