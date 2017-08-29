@@ -13,7 +13,7 @@ var config = {
     port: '5432',
     proxy: true,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
     password: process.env.DB_PASSWORD
 
 };
