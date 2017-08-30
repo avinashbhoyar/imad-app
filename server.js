@@ -127,6 +127,8 @@ app.post('/login', function (req, res) {
                 // set cookie with a session id
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
+                
+                // here error occure is Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.parse('{"message":"Credential Correct"}'));
                 
